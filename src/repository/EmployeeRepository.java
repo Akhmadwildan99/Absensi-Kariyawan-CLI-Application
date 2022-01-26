@@ -11,12 +11,12 @@ public interface EmployeeRepository {
 
     ArrayList<Employee> getAllWork();
 
-    Map<IdEmployee, Integer> getAllWorkingDays();
+    Map<Integer, Integer> getAllWorkingDays();
 
-    boolean sign(IdEmployee idEmployee, Employee employee);
+    boolean sign(Employee employeeName);
 
-    boolean in(IdEmployee idEmployee);
+    boolean in(Integer idEmployee);
 
-    boolean out(IdEmployee idEmployee);
+    boolean out(Integer idEmployee);
 
 }

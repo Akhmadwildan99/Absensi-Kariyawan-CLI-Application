@@ -20,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService{
 
         Map<IdEmployee, Employee> allEmployee = repository.getAllEmployee();
         ArrayList<Employee> allWork = repository.getAllWork();
-        Map<IdEmployee, Integer> allWorkingDays = repository.getAllWorkingDays();
+        Map<Integer, Integer> allWorkingDays = repository.getAllWorkingDays();
 
         for (var key : allEmployee.keySet()){
             System.out.println(allEmployee.get(key).getName());
@@ -28,8 +28,12 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public void signEmployee(Integer id, String employee) {
-
+    public void signEmployee(String employee) {
+        Employee employeeName = new Employee(employee);
+        boolean sign = repository.sign(employeeName);
+        if (!sign){
+            System.out.println("PROSES SIGN NEW EMPLOYEE FAILED!!");
+        }
     }
 
     @Override
