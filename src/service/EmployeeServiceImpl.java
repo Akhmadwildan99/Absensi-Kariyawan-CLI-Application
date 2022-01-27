@@ -17,6 +17,7 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public void showEmployee() {
         System.out.println("EMPLOYEE");
+        System.out.println(" ");
 
         Map<IdEmployee, Employee> allEmployee = repository.getAllEmployee();
         ArrayList<Employee> allWork = repository.getAllWork();
@@ -25,6 +26,13 @@ public class EmployeeServiceImpl implements EmployeeService{
         for (var key : allEmployee.keySet()){
             System.out.println("ID: "+ key.getId()+", KARIYAWAN: "+allEmployee.get(key).getName() + ", HARI KERJA: " + allWorkingDays.get(key));
         }
+
+        System.out.println(" ");
+        System.out.println("WORKING");
+        for (var work : allWork){
+            System.out.println(work.getName());
+        }
+        System.out.println(allWork.size()+ " Sedang bekerja");
     }
 
     @Override
@@ -38,7 +46,13 @@ public class EmployeeServiceImpl implements EmployeeService{
 
     @Override
     public void employeeIn(Integer id) {
-
+        IdEmployee idEmployee = new IdEmployee(id);
+        boolean workIn = repository.in(idEmployee);
+        if (!workIn){
+            System.out.println("ID GAGAL DITERIMA");
+        }else {
+            System.out.println("ID DITERIMA");
+        }
     }
 
     @Override

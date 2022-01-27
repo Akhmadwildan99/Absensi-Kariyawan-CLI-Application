@@ -49,8 +49,34 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
         return true;
     }
 
+    // Cek apakah ID exist di Map employee
+    public Employee idExist(IdEmployee idEmployee){
+        Employee employeeName = null;
+        if (this.employee.containsKey(idEmployee)){
+            employeeName = this.employee.get(idEmployee);
+        }
+        return employeeName;
+    }
+
+    // Cek apakah employee sedang bekerja
+    public boolean employeeExist(Employee employeeName){
+        if (this.work.contains(employeeName)){
+            return true;
+        }
+        return false;
+    }
+
     @Override
     public boolean in(IdEmployee idEmployee) {
+        Employee employeeName = idExist(idEmployee);
+        if (employeeName != null){
+            boolean exist = employeeExist(employeeName);
+            if (exist){
+                return false;
+            }
+            this.work.add(employeeName);
+            return true;
+        }
         return false;
     }
 
