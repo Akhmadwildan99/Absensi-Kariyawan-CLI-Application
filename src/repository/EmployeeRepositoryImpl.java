@@ -10,7 +10,7 @@ import java.util.Map;
 public class EmployeeRepositoryImpl implements EmployeeRepository{
     public Map<IdEmployee, Employee> employee = new HashMap<>();
     public ArrayList<Employee> work = new ArrayList<>();
-    public Map<Integer, Integer> workingDays = new HashMap<>();
+    public Map<IdEmployee, Integer> workingDays = new HashMap<>();
 
     @Override
     public Map<IdEmployee, Employee> getAllEmployee() {
@@ -23,7 +23,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
     }
 
     @Override
-    public Map<Integer, Integer> getAllWorkingDays() {
+    public Map<IdEmployee, Integer> getAllWorkingDays() {
         return workingDays;
     }
 
@@ -44,17 +44,18 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
         //Set<Map.Entry<IdEmployee, Employee>> entries = employee.entrySet();
         IdEmployee id = generateId();
         employee.put(id, employeeName);
+        workingDays.put(id, 0);
         System.out.println("Id anda \" " + employeeName.getName() + " \" : " + id.getId());
         return true;
     }
 
     @Override
-    public boolean in(Integer idEmployee) {
+    public boolean in(IdEmployee idEmployee) {
         return false;
     }
 
     @Override
-    public boolean out(Integer idEmployee) {
+    public boolean out(IdEmployee idEmployee) {
         return false;
     }
 }

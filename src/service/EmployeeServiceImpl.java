@@ -20,10 +20,10 @@ public class EmployeeServiceImpl implements EmployeeService{
 
         Map<IdEmployee, Employee> allEmployee = repository.getAllEmployee();
         ArrayList<Employee> allWork = repository.getAllWork();
-        Map<Integer, Integer> allWorkingDays = repository.getAllWorkingDays();
+        Map<IdEmployee, Integer> allWorkingDays = repository.getAllWorkingDays();
 
         for (var key : allEmployee.keySet()){
-            System.out.println(allEmployee.get(key).getName());
+            System.out.println("ID: "+ key.getId()+", KARIYAWAN: "+allEmployee.get(key).getName() + ", HARI KERJA: " + allWorkingDays.get(key));
         }
     }
 
