@@ -82,6 +82,18 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 
     @Override
     public boolean out(IdEmployee idEmployee) {
+        Employee employeeName = idExist(idEmployee);
+        if (employeeName != null){
+            boolean exist = employeeExist(employeeName);
+            if (exist){
+                work.remove(employeeName);
+                Integer work = workingDays.get(idEmployee);
+                Integer workInt;
+                workInt = ++work;
+                workingDays.put(idEmployee, workInt);
+                return true;
+            }
+        }
         return false;
     }
 }

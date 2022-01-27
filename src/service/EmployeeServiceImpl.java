@@ -49,14 +49,20 @@ public class EmployeeServiceImpl implements EmployeeService{
         IdEmployee idEmployee = new IdEmployee(id);
         boolean workIn = repository.in(idEmployee);
         if (!workIn){
-            System.out.println("ID GAGAL DITERIMA");
+            System.out.println("ID GAGAL DITERIMA, COBA LAGI");
         }else {
-            System.out.println("ID DITERIMA");
+            System.out.println("ID DITERIMA, SELAMAT BEKERJA");
         }
     }
 
     @Override
     public void employeeOut(Integer id) {
-
+        IdEmployee idEmployee = new IdEmployee(id);
+        boolean workOut = repository.out(idEmployee);
+        if (!workOut){
+            System.out.println("ID GAGAL DITERIMA, COBA LAGI");
+        } else {
+            System.out.println("ID DITERIMA, SAMPAI JUMPA");
+        }
     }
 }
