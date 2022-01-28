@@ -8,7 +8,7 @@ import service.EmployeeServiceImpl;
 
 public class TestService {
     public static void main(String[] args) {
-        testOutEmployee();
+        testInEmployee();
     }
 
     public static void testShowEmployee(){
@@ -48,7 +48,7 @@ public class TestService {
         service.employeeIn(1124);
         service.employeeIn(1125);
         service.employeeIn(1123);
-        service.employeeIn(1124);
+        service.employeeIn(null);
         service.employeeIn(1126);
         service.employeeIn(1126);
 

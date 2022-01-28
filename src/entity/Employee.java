@@ -1,8 +1,11 @@
 package entity;
 
+import exception.annotationPackage.NotBlank;
+
 import java.util.Objects;
 
 public class Employee {
+    @NotBlank
     private String name;
 
     public Employee(String name) {

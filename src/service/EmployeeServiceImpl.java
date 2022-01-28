@@ -2,6 +2,7 @@ package service;
 
 import entity.Employee;
 import entity.IdEmployee;
+import exception.validationUtil.ValidationUtil;
 import repository.EmployeeRepository;
 
 import java.util.ArrayList;
@@ -38,6 +39,12 @@ public class EmployeeServiceImpl implements EmployeeService{
     @Override
     public void signEmployee(String employee) {
         Employee employeeName = new Employee(employee);
+        try{
+            ValidationUtil.validate(employeeName);
+        } catch (NullPointerException e){
+            System.out.println("ERROR " + e);
+        }
+
         boolean sign = repository.sign(employeeName);
         if (!sign){
             System.out.println("PROSES SIGN NEW EMPLOYEE FAILED!!");
