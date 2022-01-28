@@ -8,9 +8,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class EmployeeRepositoryImpl implements EmployeeRepository{
-    public Map<IdEmployee, Employee> employee = new HashMap<>();
-    public ArrayList<Employee> work = new ArrayList<>();
-    public Map<IdEmployee, Integer> workingDays = new HashMap<>();
+    private Map<IdEmployee, Employee> employee = new HashMap<>();
+    private ArrayList<IdEmployee> work = new ArrayList<>();
+    private Map<IdEmployee, Integer> workingDays = new HashMap<>();
 
     @Override
     public Map<IdEmployee, Employee> getAllEmployee() {
@@ -18,7 +18,7 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
     }
 
     @Override
-    public ArrayList<Employee> getAllWork() {
+    public ArrayList<IdEmployee> getAllWork() {
         return work;
     }
 
@@ -42,25 +42,28 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
     @Override
     public boolean sign(Employee employeeName) {
         //Set<Map.Entry<IdEmployee, Employee>> entries = employee.entrySet();
-        IdEmployee id = generateId();
-        employee.put(id, employeeName);
-        workingDays.put(id, 0);
-        System.out.println("Id anda \" " + employeeName.getName() + " \" : " + id.getId());
-        return true;
+        if (employeeName.getName() != null && !employeeName.getName().isBlank()){
+            IdEmployee id = generateId();
+            employee.put(id, employeeName);
+            workingDays.put(id, 0);
+            System.out.println("Id anda \" " + employeeName.getName() + " \" : " + id.getId());
+            return true;
+        }
+        return false;
+
     }
 
     // Cek apakah ID exist di Map employee
-    public Employee idExist(IdEmployee idEmployee){
-        Employee employeeName = null;
+    public boolean idExist(IdEmployee idEmployee){
         if (this.employee.containsKey(idEmployee)){
-            employeeName = this.employee.get(idEmployee);
+            return true;
         }
-        return employeeName;
+        return false;
     }
 
     // Cek apakah employee sedang bekerja
-    public boolean employeeExist(Employee employeeName){
-        if (this.work.contains(employeeName)){
+    public boolean employeeExist(IdEmployee idEmployee){
+        if (this.work.contains(idEmployee)){
             return true;
         }
         return false;
@@ -68,13 +71,13 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 
     @Override
     public boolean in(IdEmployee idEmployee) {
-        Employee employeeName = idExist(idEmployee);
-        if (employeeName != null){
-            boolean exist = employeeExist(employeeName);
+        boolean existId = idExist(idEmployee);
+        if (existId){
+            boolean exist = employeeExist(idEmployee);
             if (exist){
                 return false;
             }
-            this.work.add(employeeName);
+            this.work.add(idEmployee);
             return true;
         }
         return false;
@@ -82,11 +85,11 @@ public class EmployeeRepositoryImpl implements EmployeeRepository{
 
     @Override
     public boolean out(IdEmployee idEmployee) {
-        Employee employeeName = idExist(idEmployee);
-        if (employeeName != null){
-            boolean exist = employeeExist(employeeName);
+        boolean existId = idExist(idEmployee);
+        if (existId){
+            boolean exist = employeeExist(idEmployee);
             if (exist){
-                work.remove(employeeName);
+                work.remove(idEmployee);
                 Integer work = workingDays.get(idEmployee);
                 Integer workInt;
                 workInt = ++work;

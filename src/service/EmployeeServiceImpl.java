@@ -20,7 +20,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         System.out.println(" ");
 
         Map<IdEmployee, Employee> allEmployee = repository.getAllEmployee();
-        ArrayList<Employee> allWork = repository.getAllWork();
+        ArrayList<IdEmployee> allWork = repository.getAllWork();
         Map<IdEmployee, Integer> allWorkingDays = repository.getAllWorkingDays();
 
         for (var key : allEmployee.keySet()){
@@ -30,7 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService{
         System.out.println(" ");
         System.out.println("WORKING");
         for (var work : allWork){
-            System.out.println(work.getName());
+            System.out.println(work.getId() + " || " + allEmployee.get(work).getName());
         }
         System.out.println(allWork.size()+ " Sedang bekerja");
     }

@@ -9,7 +9,7 @@ import java.util.Map;
 public interface EmployeeRepository {
     Map<IdEmployee, Employee> getAllEmployee();
 
-    ArrayList<Employee> getAllWork();
+    ArrayList<IdEmployee> getAllWork();
 
     Map<IdEmployee, Integer> getAllWorkingDays();
 

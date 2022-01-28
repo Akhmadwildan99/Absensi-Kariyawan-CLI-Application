@@ -28,7 +28,8 @@ public class TestService {
         service.signEmployee("Akhmad");
         service.signEmployee("Wildan");
         service.signEmployee("WildanAkhmad");
-        service.signEmployee("WildanAkhmad");
+        service.signEmployee(null);
+        service.signEmployee("");
 
         service.showEmployee();
     }
@@ -47,7 +48,7 @@ public class TestService {
         service.employeeIn(1124);
         service.employeeIn(1125);
         service.employeeIn(1123);
-        service.employeeOut(1124);
+        service.employeeIn(1124);
         service.employeeIn(1126);
         service.employeeIn(1126);
 
@@ -60,6 +61,7 @@ public class TestService {
 
         service.signEmployee("Akhmad");
         service.signEmployee("Wildan");
+        service.signEmployee("WildanAkhmad");
         service.signEmployee("WildanAkhmad");
         service.employeeIn(1123);
         service.employeeIn(1124);
@@ -75,6 +77,9 @@ public class TestService {
         service.showEmployee();
         service.employeeIn(1123);
         service.employeeIn(1124);
+        service.employeeIn(1125);
+        service.employeeIn(1126);
+        service.employeeOut(1126);
         service.employeeOut(1124);
         service.employeeOut(1125);
         service.employeeOut(1123);
