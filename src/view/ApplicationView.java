@@ -1,7 +1,10 @@
 package view;
 
+import exception.validationUtil.ValidationUtil;
 import service.EmployeeService;
 import util.InputUtil;
+
+import java.util.concurrent.atomic.AtomicReference;
 
 public class ApplicationView {
     private EmployeeService employeeService;
@@ -19,6 +22,8 @@ public class ApplicationView {
                 adminApplication(role);
             } else if (role.equals("employee")){
                 employeeApplication();
+            } else if (role.equals("x")){
+                break;
             } else {
                 System.out.println("Pilihan tidak dimengerti");
             }
@@ -58,10 +63,11 @@ public class ApplicationView {
             System.out.println("2. out");
             System.out.println("x. cancel");
             String inputControllers = InputUtil.input("pilihan: ");
+            Integer inputId = Integer.valueOf(input);
             if (inputControllers.equals("1")){
-                employeeService.employeeIn(Integer.valueOf(input));
+                employeeService.employeeIn(inputId);
             } else if (inputControllers.equals("2")){
-                employeeService.employeeOut(Integer.valueOf(input));
+                employeeService.employeeOut(inputId);
             }else if(inputControllers.equals("x")){
                 break;
             } else {

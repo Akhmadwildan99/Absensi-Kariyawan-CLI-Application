@@ -25,4 +25,12 @@ public class ValidationUtil {
             }
         }
     }
+
+    public static void validateIfNull(Integer integer) throws NumberFormatException, NullPointerException{
+        if (integer == null ){
+            throw new NullPointerException("integer is null");
+        } else if (integer.equals(Integer.valueOf(""))){
+            throw new NumberFormatException("Not number format");
+        }
+    }
 }
